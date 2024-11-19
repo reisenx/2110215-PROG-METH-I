@@ -1,0 +1,11 @@
+package logic.ghost;
+
+public abstract class Ghost {
+	// Class Properties
+	private int hp;
+	
+	// Method
+	public Ghost (int hp) {
+		this.hp = hp;
+	}
+}

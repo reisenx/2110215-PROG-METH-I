@@ -1,0 +1,40 @@
+package logic.components;
+
+public class Potion {
+	// Class Properties
+	private String name;
+	private int price;
+	private Status increasingStatus;
+	
+	// Constructor Method
+	public Potion(String name, int price, Status increasingStatus)
+	{
+		
+	}
+	
+	// Getter & Setter Method for name
+	public String getName() {
+		return this.name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+	// Getter & Setter Method for priec
+	public int getPrice() {
+		return price;
+	}
+
+	public void setPrice(int price) {
+		this.price = price;
+	}
+
+	public Status getIncreasingStatus() {
+		return increasingStatus;
+	}
+
+	public void setIncreasingStatus(Status increasingStatus) {
+		this.increasingStatus = increasingStatus;
+	}
+	
+}

@@ -1,0 +1,25 @@
+package logic.item;
+
+import logic.game.GameController;
+import utils.Config;
+
+public class Amulet extends Item{
+	// Constructor Methods
+	public Amulet() {}
+	
+	// Methods
+	@Override
+	public void effect() {
+		
+	}
+	public String toString() {
+		return "Amulet"
+	}
+	
+	// Getters
+	@Override
+	public int getLevel() {
+		return Config.AmuletLevel;
+	}
+
+}

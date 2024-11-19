@@ -1,0 +1,11 @@
+package pane;
+
+import javafx.geometry.Pos;
+import javafx.scene.layout.HBox;
+
+public class SearchPane extends HBox {
+	// Constructor Method
+	public SearchPane() {
+		super.setAlignment(Pos.CENTER);
+	}
+}

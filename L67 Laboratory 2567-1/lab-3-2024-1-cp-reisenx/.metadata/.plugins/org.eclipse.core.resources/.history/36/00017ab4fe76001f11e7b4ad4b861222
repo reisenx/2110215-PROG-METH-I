@@ -1,0 +1,15 @@
+package logic.ghost;
+
+import logic.game.GameController;
+import utils.Config;
+
+public class PryGhost extends LowGhost{
+	// Class Properties
+	private int power;
+	private int ppt;
+	
+	// Constructor Method
+	public PryGhost() {
+		
+	}
+}

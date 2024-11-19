@@ -1,0 +1,11 @@
+package logic.components;
+
+public class Potion {
+	// Class Properties
+	private String name;
+	private int price;
+	private Status increasingStatus;
+	
+	// Constructor Method
+	public Potion()
+}

@@ -1,0 +1,8 @@
+package logic.components;
+
+public class Market
+{
+	private String name;
+	private Array<Food> foods;
+	private Array<Potion> potions;
+}

@@ -1,0 +1,21 @@
+package logic.ghost;
+
+public abstract class Ghost {
+	// Class Properties
+	private int hp;
+	
+	// Constructor Method
+	public Ghost (int hp) {
+		this.hp = hp;
+	}
+	
+	// isDestroyed Method
+	public void isDestroyed() {
+		
+	}
+	
+	// Methods
+	public int getHp() {
+		return this.hp;
+	}
+}

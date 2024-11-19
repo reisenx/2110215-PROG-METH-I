@@ -1,0 +1,12 @@
+package pane;
+
+import item.Book;
+import javafx.scene.layout.GridPane;
+
+public class BookPane extends GridPane {
+	// Constructor Method
+	public BookPane(Book book) {
+		super.setPrefWidth(428);
+		
+	}
+}

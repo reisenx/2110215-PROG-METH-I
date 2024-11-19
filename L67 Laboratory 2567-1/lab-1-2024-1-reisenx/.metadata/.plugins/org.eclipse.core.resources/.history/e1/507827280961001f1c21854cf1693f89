@@ -1,0 +1,8 @@
+package logic.components;
+
+public class Potion {
+	
+	// Class Properties
+	private String name;
+	private int price;
+}

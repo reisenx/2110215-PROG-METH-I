@@ -1,0 +1,25 @@
+package logic.actor;
+
+import logic.game.GameController;
+import logic.ghost.Ghost;
+import logic.ghost.HighGhost;
+import utils.Config;
+
+public class Monk extends Actor {
+	// Constructor Methods
+	public Monk () {}
+	
+	// Methods
+	public void attack() {
+		Ghost ghost = GameController.getInstance().getGhosts().get(0);
+		if(ghost instanceof HighGhost) {
+			ghost.decreasedHp(this.getLevel());
+		}
+	}
+	
+	
+	// Getters
+	public getLevel() {
+		return Config.MonkLevel;
+	}
+}

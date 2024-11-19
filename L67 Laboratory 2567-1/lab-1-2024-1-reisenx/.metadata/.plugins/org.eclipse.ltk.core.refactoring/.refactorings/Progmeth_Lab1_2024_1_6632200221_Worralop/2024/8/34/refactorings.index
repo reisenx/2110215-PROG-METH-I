@@ -1,0 +1,11 @@
+1724383121933	Move compilation unit
+1724383127316	Delete element
+1724385596664	Rename method 'SetName'
+1724385749457	Rename method 'SetPrice'
+1724385753707	Rename method 'SetEnergy'
+1724385759162	Rename method 'GetName'
+1724385765467	Rename method 'GetPrice'
+1724385770260	Rename method 'GetEnergy'
+1724398108990	Rename local variable 'DMG'
+1724398464443	Rename local variable 'player'
+1724398495774	Rename local variable 'player'

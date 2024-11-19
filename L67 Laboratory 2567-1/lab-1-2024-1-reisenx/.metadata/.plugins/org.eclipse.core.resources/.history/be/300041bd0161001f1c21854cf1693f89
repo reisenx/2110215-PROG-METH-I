@@ -1,0 +1,45 @@
+package logic.components;
+
+public class Food {
+	private String name;
+	private int price, energy;
+	
+	// Construct Food object
+	public void Food(String name, int price, int energy)
+	{
+		
+	}
+	
+	// Setter Method
+	public void SetName(String name)
+	{
+		this.name = name;
+	}
+	public void SetPrice(int price)
+	{
+		if(price < 1)
+		{
+			this.price = 1
+		}
+	}
+	
+	// Getter Method
+	public String GetName()
+	{
+		return this.name;
+	}
+	public int GetPrice()
+	{
+		return this.price;
+	}
+	public int GetEnergy()
+	{
+		return this.energy;
+	}
+	
+	public boolean equals(Object o)
+	{
+		Food otherfood = (Food) o;
+	}
+
+}

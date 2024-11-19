@@ -1,0 +1,8 @@
+package logic.item;
+
+public abstract class Item {
+	// Methods
+	
+	// Getters
+	public abstract int getLevel();
+}

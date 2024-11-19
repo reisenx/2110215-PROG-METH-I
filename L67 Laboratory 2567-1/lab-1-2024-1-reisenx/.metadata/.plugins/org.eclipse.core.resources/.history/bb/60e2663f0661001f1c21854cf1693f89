@@ -1,0 +1,47 @@
+package logic.components;
+
+public class Food {
+	// Class Properties
+	private String name;
+	private int price, energy;
+	
+	// Construct Method
+	public Food(String name, int price, int energy) {
+		this.setName(name);
+		this.setPrice(price);
+		this.setEnergy(energy);
+	}
+	
+	// Getter & Setter Method for name
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getName() {
+		return this.name;
+	}
+	
+	// Getter & Setter Method  for price
+	public void setPrice(int price) {
+		if(price < 1) this.price = 1;
+		else this.price = price;
+	}
+	public int getPrice() {
+		return this.price;
+	}
+	
+	// Getter & Setter for energy
+	public void setEnergy(int energy) {
+		if(energy < 1) this.energy = 1;
+		else this.energy = energy;
+	}
+	public int getEnergy() {
+		return this.energy;
+	}
+	
+	// Equals Method
+	public boolean equals(Object o) {
+		Food OtherFood = (Food) o;
+		return (this.name == OtherFood.name) && (this.price == OtherFood.price ) && (this.energy == OtherFood.energy);
+	}
+
+}

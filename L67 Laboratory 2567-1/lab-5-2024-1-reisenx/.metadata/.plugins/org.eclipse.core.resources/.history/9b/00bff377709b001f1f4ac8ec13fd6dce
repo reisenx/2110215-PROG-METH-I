@@ -1,0 +1,19 @@
+package pane;
+
+import item.Book;
+import javafx.geometry.Insets;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.GridPane;
+import utils.GetDisplay;
+
+public class BookPane extends GridPane {
+	// Constructor Method
+	public BookPane(Book book) {
+		super.setPrefWidth(428);
+		super.setHgap(8);
+		super.setPadding(new Insets(4));
+		ImageView image = GetDisplay.Image(book, 160);
+		super.add(image, 0, 3);
+		
+	}
+}

@@ -1,0 +1,5 @@
+package logic.ghost;
+
+public abstract class Ghost {
+	
+}

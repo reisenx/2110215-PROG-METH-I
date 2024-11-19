@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+    <fullyQualifiedTypeName name="item.base.BaseArmor"/>
+    <fullyQualifiedTypeName name="item.base.BaseWeapon"/>
+    <fullyQualifiedTypeName name="item.base.BaseConsumption"/>
+    <fullyQualifiedTypeName name="java.util.HashMap"/>
+    <fullyQualifiedTypeName name="java.util.Map"/>
+    <fullyQualifiedTypeName name="item.usage.Upgradable"/>
+    <fullyQualifiedTypeName name="item.usage.CookState"/>
+</qualifiedTypeNameHistroy>

@@ -1,0 +1,31 @@
+package logic.ghost;
+
+import logic.game.GameController;
+import utils.Config;
+
+public class PooYaGhost extends HighGhost{
+	// Class Properties
+	private int power;
+	
+	// Constructor Method
+	public PooYaGhost(int power) {
+		super();
+		this.power = power;
+	}
+	
+	// Methods
+	public String toString() {
+		return "[HP: " + this.getHp() + " , Power: " + this.power + "]";
+	}
+	public void attack() {
+		int PlayerHP = GameController.getInstance().getHp();
+		int PlayerScore = GameController.getInstance().getScore();
+		GameController.getInstance().setHp(PlayerHP - this.power);
+		GameController.getInstance().setScore(PlayerScore - this.power);
+	}
+	
+	// Getters
+	public int getLevel() {
+		return Config.PooYaGhostLevel;
+	}
+}

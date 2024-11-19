@@ -1,0 +1,59 @@
+package logic.components;
+
+public class Food {
+	// Class Properties
+	private String name;
+	private int price, energy;
+	
+	// Construct Food object
+	public void Food(String name, int price, int energy) {
+		this.setName(name);
+		this.setPrice(price);
+		this.setEnergy(energy);
+	}
+	
+
+	public String getName() {
+		return name;
+	}
+
+
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+
+
+	public int getPrice() {
+		return price;
+	}
+
+
+
+	public void setPrice(int price) {
+		this.price = price;
+	}
+
+
+
+	public int getEnergy() {
+		return energy;
+	}
+
+
+
+	public void setEnergy(int energy) {
+		this.energy = energy;
+	}
+
+
+
+	// Equals Method
+	public boolean equals(Object o)
+	{
+		Food OtherFood = (Food) o;
+		return this.name == OtherFood.name && this.price == OtherFood.price && this.energy == OtherFood.energy;
+	}
+
+}

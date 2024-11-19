@@ -1,0 +1,7 @@
+package logic.actor;
+
+public abstract class Actor {
+	// Methods
+	public abstract int getLevel();
+	public abstract void attack();
+}

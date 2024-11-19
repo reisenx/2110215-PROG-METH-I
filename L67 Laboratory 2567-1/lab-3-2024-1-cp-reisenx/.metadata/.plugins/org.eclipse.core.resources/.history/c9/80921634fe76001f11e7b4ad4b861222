@@ -1,0 +1,34 @@
+package logic.ghost;
+
+import logic.game.GameController;
+import utils.Config;
+
+public class MaBongGhost extends LowGhost{
+	// Class Properties
+	private int power, speed;
+	
+	// Constructor Method
+	public MaBongGhost() {
+		super();
+		this.power = Config.MaBongGhostPower;
+		this.setSpeed(Config.MaBongGhostSpeed);
+	}
+	public MaBongGhost(int power) {
+		super();
+		this.power = power;
+		this.setSpeed(Config.MaBongGhostSpeed);
+	}
+	public MaBongGhost(int power, int speed) {
+		
+	}
+	
+	
+	// Getters & Setters
+	public int getSpeed() {
+		return this.speed;
+	}
+
+	public void setSpeed(int speed) {
+		this.speed = speed;
+	}
+}

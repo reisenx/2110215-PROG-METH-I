@@ -1,0 +1,14 @@
+package logic.ghost;
+
+import logic.game.GameController;
+import utils.Config;
+
+public class PooYaGhost extends HighGhost{
+	// Class Properties
+	private int power;
+	
+	// Constructor Method
+	public PooYaGhost(int power) {
+		
+	}
+}

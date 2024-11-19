@@ -1,0 +1,11 @@
+package logic.components;
+
+public class Market
+{
+	// Class Properties
+	private String name;
+	private ArrayList<Food> foods;
+	private ArrayList<Potion> potions;
+	
+	// Constructor Method
+}

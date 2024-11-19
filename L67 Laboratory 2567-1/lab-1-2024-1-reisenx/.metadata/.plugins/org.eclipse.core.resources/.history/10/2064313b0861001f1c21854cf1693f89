@@ -1,0 +1,7 @@
+package logic.components;
+
+public class Ore {
+	// Class Properties
+	private String name;
+	private int cost;
+}

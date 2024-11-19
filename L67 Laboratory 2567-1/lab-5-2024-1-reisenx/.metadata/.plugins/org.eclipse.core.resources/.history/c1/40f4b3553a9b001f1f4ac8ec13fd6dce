@@ -1,0 +1,20 @@
+package utils;
+
+import javafx.scene.image.ImageView;
+import javafx.scene.text.Text;
+import item.Book;
+
+public class GetDisplay {
+	// Methods
+	public Text Description(Book book, int fontSize, int wrappingWidth) {
+		Text description = new Text(book.getDescription());
+		description.setStyle("-fx-font-size: " + fontSize + "px;");
+		description.setWrappingWidth(wrappingWidth);
+		return description;
+	}
+	
+	public ImageView Image(Book book, int fitHeight) {
+		ImageView image = new ImageView(book.getImage());
+		image.preserveRatioProperty();
+	}
+}

@@ -1,0 +1,8 @@
+package pane;
+
+import javafx.scene.layout.GridPane;
+
+public class BookPane extends GridPane {
+	// Constructor Method
+	
+}

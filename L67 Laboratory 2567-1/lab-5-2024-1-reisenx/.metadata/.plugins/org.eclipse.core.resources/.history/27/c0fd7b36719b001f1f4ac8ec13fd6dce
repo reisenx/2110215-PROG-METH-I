@@ -1,0 +1,5 @@
+package pane;
+
+public class SearchPane extends HBox {
+
+}

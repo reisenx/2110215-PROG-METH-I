@@ -1,0 +1,20 @@
+package logic.ghost;
+
+import logic.game.GameController;
+import utils.Config;
+
+public class GaGhost extends LowGhost{
+	// Class Properties
+	private int energy;
+	
+	// Constructor Methods
+	public GaGhost() {
+		super();
+		this.energy = Config.GaGhostEnergy;
+	}
+	public GaGhost(int energy) {
+		super();
+		this.energy = Config.GaGhostEnergy;
+	}
+	
+}

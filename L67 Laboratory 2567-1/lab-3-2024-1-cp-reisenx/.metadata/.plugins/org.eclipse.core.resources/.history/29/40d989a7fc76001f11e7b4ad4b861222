@@ -1,0 +1,24 @@
+package logic.ghost;
+
+public abstract class Ghost {
+	// Class Properties
+	private int hp;
+	
+	// Constructor Method
+	public Ghost (int hp) {
+		this.hp = hp;
+	}
+	
+	// Methods
+	public boolean isDestroyed() {
+		return this.getHp() == 0;
+	}
+	public void decreasedHp(int amount) {
+		
+	}
+	
+	// Getters
+	public int getHp() {
+		return this.hp;
+	}
+}

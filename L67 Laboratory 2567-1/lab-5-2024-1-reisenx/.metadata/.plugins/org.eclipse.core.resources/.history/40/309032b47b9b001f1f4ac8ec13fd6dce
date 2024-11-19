@@ -1,0 +1,56 @@
+package pane;
+
+import item.Book;
+import javafx.geometry.Insets;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.Border;
+import javafx.scene.layout.BorderStroke;
+import javafx.scene.layout.BorderStrokeStyle;
+import javafx.scene.layout.BorderWidths;
+import javafx.scene.layout.CornerRadii;
+import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
+import javafx.scene.control.TextField;
+
+public class NewBookPane extends GridPane {
+	// Constructor Methods
+	public NewBookPane() {
+		super.setPadding(new Insets(12));
+		super.setVgap(12);
+		
+	}
+	
+	// Methods
+	private Text label(String s) {
+		Text label = new Text(s);
+		label.setFont(new Font(16));
+		return label;
+	}
+	
+	private TextField input() {
+		TextField textField = new TextField();
+		textField.setBackground(new Background(
+				new BackgroundFill(
+						Color.WHITE,
+						new CornerRadii(16),
+						null)));
+		textField.setBorder(new Border(
+				new BorderStroke(
+						Color.DARKCYAN,
+						BorderStrokeStyle.SOLID,
+						new CornerRadii(16),
+						BorderWidths.DEFAULT)));
+		return textField;
+	}
+	
+	private void handleClick(String name, String author, String rating, String image, String description) {
+		if(name.isBlank() || author.isBlank() || rating.isBlank() || image.isBlank() || description.isBlank()) {
+			return;
+		}
+		Book book = new Book(name, author, rating, image, description);
+		BookListPane.getInstance().getBooks().add(book);
+	}
+}

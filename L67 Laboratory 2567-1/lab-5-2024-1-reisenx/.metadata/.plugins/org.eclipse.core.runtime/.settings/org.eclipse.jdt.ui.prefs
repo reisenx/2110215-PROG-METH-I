@@ -1,0 +1,9 @@
+content_assist_disabled_computers=org.eclipse.jdt.ui.textProposalCategory\u0000org.eclipse.jdt.ui.javaPostfixProposalCategory\u0000org.eclipse.jdt.ui.javaAllProposalCategory\u0000org.eclipse.jdt.ui.javaTypeProposalCategory\u0000org.eclipse.jdt.ui.javaNoTypeProposalCategory\u0000org.eclipse.jdt.ui.javaChainProposalCategory\u0000
+content_assist_lru_history=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?><history maxLHS\="100" maxRHS\="10"><lhs name\="javafx.scene.paint.Paint"><rhs name\="javafx.scene.paint.Color"/></lhs><lhs name\="javafx.event.EventTarget"><rhs name\="pane.BookListPane"/><rhs name\="pane.RootPane"/></lhs><lhs name\="javafx.css.Styleable"><rhs name\="pane.BookListPane"/><rhs name\="pane.RootPane"/></lhs><lhs name\="javafx.scene.Node"><rhs name\="pane.BookListPane"/><rhs name\="pane.RootPane"/></lhs><lhs name\="java.lang.Enum"><rhs name\="javafx.scene.control.ScrollPane$ScrollBarPolicy"/><rhs name\="javafx.scene.text.TextAlignment"/><rhs name\="javafx.geometry.Pos"/><rhs name\="javafx.geometry.HPos"/></lhs><lhs name\="java.lang.constant.Constable"><rhs name\="javafx.scene.control.ScrollPane$ScrollBarPolicy"/><rhs name\="javafx.scene.text.TextAlignment"/><rhs name\="javafx.geometry.Pos"/><rhs name\="javafx.geometry.HPos"/></lhs><lhs name\="javafx.scene.layout.CornerRadii"><rhs name\="javafx.scene.layout.CornerRadii"/></lhs><lhs name\="javafx.geometry.Insets"><rhs name\="javafx.geometry.Insets"/></lhs><lhs name\="javafx.scene.layout.ConstraintsBase"><rhs name\="javafx.scene.layout.ColumnConstraints"/></lhs><lhs name\="javafx.scene.layout.ColumnConstraints"><rhs name\="javafx.scene.layout.ColumnConstraints"/></lhs><lhs name\="javafx.scene.Parent"><rhs name\="pane.RootPane"/></lhs></history>
+content_assist_number_of_computers=16
+eclipse.preferences.version=1
+org.eclipse.jdt.ui.formatterprofiles.version=23
+spelling_locale_initialized=true
+typefilter_migrated_2=true
+useAnnotationsPrefPage=true
+useQuickDiffPrefPage=true

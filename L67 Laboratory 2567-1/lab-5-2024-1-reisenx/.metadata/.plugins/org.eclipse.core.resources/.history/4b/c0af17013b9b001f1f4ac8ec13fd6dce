@@ -1,0 +1,28 @@
+package utils;
+
+import javafx.scene.image.ImageView;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
+import item.Book;
+
+public class GetDisplay {
+	// Methods
+	public Text Description(Book book, int fontSize, int wrappingWidth) {
+		Text description = new Text(book.getDescription());
+		description.setStyle("-fx-font-size: " + fontSize + "px;");
+		description.setWrappingWidth(wrappingWidth);
+		return description;
+	}
+	
+	public ImageView Image(Book book, int fitHeight) {
+		ImageView image = new ImageView(book.getImage());
+		image.setPreserveRatio(true);
+		image.setFitWidth(fitHeight);
+		return image;
+	}
+	
+	public Text name(Book book, int fontSize, int wrappingWidth, TextAlignment textAlignment) {
+		Text name = new Text(book.getName());
+		name.setStyle("-fx-font-size: " + fontSize + "px;");
+	}
+}

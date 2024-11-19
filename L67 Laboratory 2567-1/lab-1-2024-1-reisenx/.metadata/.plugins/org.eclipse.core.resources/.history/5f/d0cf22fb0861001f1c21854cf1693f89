@@ -1,0 +1,28 @@
+package logic.components;
+
+public class Ore {
+	// Class Properties
+	private String name;
+	private int cost;
+	
+	public Ore(String name, int cost) {
+		
+	}
+	
+	// Getter & Setter Method for name
+	public String getName() {
+		return this.name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+	// Getter & Setter Method for cost
+	public int getCost() {
+		return this.cost;
+	}
+	public void setCost(int cost) {
+		if(cost < 1) this.cost = 1;
+		else this.cost = cost;
+	}
+}
