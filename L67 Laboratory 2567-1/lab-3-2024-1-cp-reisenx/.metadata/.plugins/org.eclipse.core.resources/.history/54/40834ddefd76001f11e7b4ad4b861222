@@ -1,9 +1,0 @@
-package logic.ghost;
-
-import logic.game.GameController;
-import utils.Config;
-
-public class MaBongGhost extends LowGhost{
-	// Class Properties
-	private int power, speed;
-}
