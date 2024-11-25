@@ -32,7 +32,7 @@ public class PryGhost extends LowGhost{
 	@Override
 	public void attack() {
 		int PlayerHP = GameController.getInstance().getHp();
-		GameController.getInstance().setHp(PlayerHP - (this.power - this.getPpt()));
+		GameController.getInstance().setHp(PlayerHP - (this.power * this.getPpt()));
 	}
 	
 	// Getters & Setter

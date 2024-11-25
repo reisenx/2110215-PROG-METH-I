@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="AmuletTest (1)" project="Progmeth_lab3_2024_1_6632200221_Worralop" tests="4" started="4" failures="0" errors="0" ignored="0">
+  <testsuite name="grader.student.AmuletTest" time="0.001" displayname="AmuletTest" uniqueid="[engine:junit-jupiter]/[class:grader.student.AmuletTest]">
+    <testcase name="testGetLevel" classname="grader.student.AmuletTest" time="0.001" displayname="testGetLevel()" uniqueid="[engine:junit-jupiter]/[class:grader.student.AmuletTest]/[method:testGetLevel()]"/>
+    <testcase name="testToString" classname="grader.student.AmuletTest" time="0.0" displayname="testToString()" uniqueid="[engine:junit-jupiter]/[class:grader.student.AmuletTest]/[method:testToString()]"/>
+    <testcase name="testEffectWithHighHp" classname="grader.student.AmuletTest" time="0.0" displayname="testEffectWithHighHp()" uniqueid="[engine:junit-jupiter]/[class:grader.student.AmuletTest]/[method:testEffectWithHighHp()]"/>
+    <testcase name="testEffectWithLowHp" classname="grader.student.AmuletTest" time="0.0" displayname="testEffectWithLowHp()" uniqueid="[engine:junit-jupiter]/[class:grader.student.AmuletTest]/[method:testEffectWithLowHp()]"/>
+  </testsuite>
+</testrun>

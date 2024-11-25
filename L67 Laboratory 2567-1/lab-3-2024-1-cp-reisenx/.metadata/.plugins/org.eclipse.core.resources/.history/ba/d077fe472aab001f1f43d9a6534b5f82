@@ -59,11 +59,11 @@ class PryGhostTest {
     	GameController.getInstance().setHp(20);
         // Case 1: PPT = 0
         pryGhost.attack();
-        assertEquals(17, GameController.getInstance().getHp());
+        assertEquals(20, GameController.getInstance().getHp());
         // Case 2: PPT > 0
-        pryGhost.setPpt(3);
+        pryGhost.setPpt(5);
         pryGhost.attack();
-        assertEquals(17, GameController.getInstance().getHp());
+        assertEquals(5, GameController.getInstance().getHp());
     }
     
     @Test

@@ -57,7 +57,7 @@ class GameControllerTest {
         assertEquals("GaGhost [HP: 3 , Energy: 6]", ghost1.toString());
         // Check after play
         GameController.getInstance().play(actor);
-        assertEquals(3, GameController.getInstance().getGhosts().size());
+        assertEquals(2, GameController.getInstance().getGhosts().size());
         assertEquals("GaGhost [HP: 3 , Energy: 10]", GameController.getInstance().getGhosts().get(0).toString());
         assertEquals("GaGhost [HP: 3 , Energy: 15]", GameController.getInstance().getGhosts().get(1).toString());
     }

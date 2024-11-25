@@ -57,7 +57,7 @@ public class GameController {
     	}
     	// Add new ghosts
     	for(int i = 0; i < RemovedGhost; i++) {
-    		addNewGhost(GameUtils.getRandomGhost(true));
+    		GameUtils.getRandomGhost(true);
     	}
     }
     
@@ -103,7 +103,7 @@ public class GameController {
     	this.setScore(0);
     	this.addNewActor(new Villager());
     	for(int i = 0; i < 10; i++) {
-    		addNewGhost(GameUtils.getRandomGhost(false));
+    		GameUtils.getRandomGhost(false);
     	}
     }
     
