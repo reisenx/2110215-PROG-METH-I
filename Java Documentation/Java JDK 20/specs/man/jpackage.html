@@ -1,0 +1,861 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc,fixuphtml" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>The jpackage Command</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" href="../../resources/jdk-default.css" />
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+
+<header id="title-block-header">
+<div class="navbar"><div><strong>Java SE 20 & JDK 20</strong></div><nav><ul><li><a href="../../api/index.html">API</a>
+<li><a href="../index.html">OTHER SPECIFICATIONS</a>
+<li><a href="../man/index.html">TOOL GUIDES</a></ul></nav></div>
+
+<h1 class="title">The jpackage Command</h1>
+</header>
+<nav id="TOC" role="doc-toc" title="Table Of Contents">
+<ul>
+<li><a href="#name" id="toc-name">Name</a></li>
+<li><a href="#synopsis" id="toc-synopsis">Synopsis</a></li>
+<li><a href="#description" id="toc-description">Description</a></li>
+<li><a href="#jpackage-options" id="toc-jpackage-options">jpackage
+Options</a>
+<ul>
+<li><a href="#generic-options" id="toc-generic-options">Generic
+Options:</a></li>
+<li><a href="#options-for-creating-the-runtime-image"
+id="toc-options-for-creating-the-runtime-image">Options for creating the
+runtime image:</a></li>
+<li><a href="#options-for-creating-the-application-image"
+id="toc-options-for-creating-the-application-image">Options for creating
+the application image:</a></li>
+<li><a href="#options-for-creating-the-application-launchers"
+id="toc-options-for-creating-the-application-launchers">Options for
+creating the application launcher(s):</a></li>
+<li><a
+href="#platform-dependent-option-for-creating-the-application-launcher"
+id="toc-platform-dependent-option-for-creating-the-application-launcher">Platform
+dependent option for creating the application launcher:</a></li>
+<li><a href="#options-for-creating-the-application-package"
+id="toc-options-for-creating-the-application-package">Options for
+creating the application package:</a></li>
+<li><a
+href="#platform-dependent-options-for-creating-the-application-package"
+id="toc-platform-dependent-options-for-creating-the-application-package">Platform
+dependent options for creating the application package:</a></li>
+</ul></li>
+<li><a href="#jpackage-examples" id="toc-jpackage-examples">jpackage
+Examples</a></li>
+<li><a href="#jpackage-resource-directory"
+id="toc-jpackage-resource-directory">jpackage resource directory</a>
+<ul>
+<li><a
+href="#resource-directory-files-considered-only-when-running-on-linux"
+id="toc-resource-directory-files-considered-only-when-running-on-linux">Resource
+directory files considered only when running on Linux:</a></li>
+<li><a
+href="#resource-directory-files-considered-only-when-running-on-windows"
+id="toc-resource-directory-files-considered-only-when-running-on-windows">Resource
+directory files considered only when running on Windows:</a></li>
+<li><a
+href="#resource-directory-files-considered-only-when-running-on-macos"
+id="toc-resource-directory-files-considered-only-when-running-on-macos">Resource
+directory files considered only when running on macOS:</a></li>
+</ul></li>
+</ul>
+</nav>
+<main><h2 id="name">Name</h2>
+<p>jpackage - tool for packaging self-contained Java applications.</p>
+<h2 id="synopsis">Synopsis</h2>
+<p><code>jpackage</code> [<em>options</em>]</p>
+<dl>
+<dt><em>options</em></dt>
+<dd>
+Command-line options separated by spaces. See <a
+href="#jpackage-options">jpackage Options</a>.
+</dd>
+</dl>
+<h2 id="description">Description</h2>
+<p>The <code>jpackage</code> tool will take as input a Java application
+and a Java run-time image, and produce a Java application image that
+includes all the necessary dependencies. It will be able to produce a
+native package in a platform-specific format, such as an exe on Windows
+or a dmg on macOS. Each format must be built on the platform it runs on,
+there is no cross-platform support. The tool will have options that
+allow packaged applications to be customized in various ways.</p>
+<h2 id="jpackage-options">jpackage Options</h2>
+<h3 id="generic-options">Generic Options:</h3>
+<dl>
+<dt><code>@</code><em>filename</em></dt>
+<dd>
+<p>Read options from a file.</p>
+<p>This option can be used multiple times.</p>
+</dd>
+<dt><a id="option-type"><code>--type</code> or <code>-t</code>
+<em>type</em></a></dt>
+<dd>
+<p>The type of package to create</p>
+<p>Valid values are: {"app-image", "exe", "msi", "rpm", "deb", "pkg",
+"dmg"}</p>
+<p>If this option is not specified a platform dependent default type
+will be created.</p>
+</dd>
+<dt><a id="option-app-version"><code>--app-version</code>
+<em>version</em></a></dt>
+<dd>
+<p>Version of the application and/or package</p>
+</dd>
+<dt><a id="option-copyright"><code>--copyright</code>
+<em>copyright</em></a></dt>
+<dd>
+<p>Copyright for the application</p>
+</dd>
+<dt><a id="option-description"><code>--description</code>
+<em>description</em></a></dt>
+<dd>
+<p>Description of the application</p>
+</dd>
+<dt><a id="option-help"><code>--help</code> or <code>-h</code></a></dt>
+<dd>
+<p>Print the usage text with a list and description of each valid option
+for the current platform to the output stream, and exit.</p>
+</dd>
+<dt><a id="option-icon"><code>--icon</code> <em>path</em></a></dt>
+<dd>
+<p>Path of the icon of the application package</p>
+<p>(absolute path or relative to the current directory)</p>
+</dd>
+<dt><a id="option-name"><code>--name</code> or <code>-n</code>
+<em>name</em></a></dt>
+<dd>
+<p>Name of the application and/or package</p>
+</dd>
+<dt><a id="option-dest"><code>--dest</code> or <code>-d</code>
+<em>destination</em></a></dt>
+<dd>
+<p>Path where generated output file is placed</p>
+<p>(absolute path or relative to the current directory).</p>
+<p>Defaults to the current working directory.</p>
+</dd>
+<dt><a id="option-temp"><code>--temp</code> <em>directory</em></a></dt>
+<dd>
+<p>Path of a new or empty directory used to create temporary files</p>
+<p>(absolute path or relative to the current directory)</p>
+<p>If specified, the temp dir will not be removed upon the task
+completion and must be removed manually.</p>
+<p>If not specified, a temporary directory will be created and removed
+upon the task completion.</p>
+</dd>
+<dt><a id="option-vendor"><code>--vendor</code> <em>vendor</em></a></dt>
+<dd>
+<p>Vendor of the application</p>
+</dd>
+<dt><a id="option-verbose"><code>--verbose</code></a></dt>
+<dd>
+<p>Enables verbose output.</p>
+</dd>
+<dt><a id="option-version"><code>--version</code></a></dt>
+<dd>
+<p>Print the product version to the output stream and exit.</p>
+</dd>
+</dl>
+<h3 id="options-for-creating-the-runtime-image">Options for creating the
+runtime image:</h3>
+<dl>
+<dt><a id="option-add-modules"><code>--add-modules</code>
+<em>module-name</em> [<code>,</code><em>module-name</em>...]</a></dt>
+<dd>
+<p>A comma (",") separated list of modules to add</p>
+<p>This module list, along with the main module (if specified) will be
+passed to jlink as the --add-module argument. If not specified, either
+just the main module (if --module is specified), or the default set of
+modules (if --main-jar is specified) are used.</p>
+<p>This option can be used multiple times.</p>
+</dd>
+<dt><a id="option-module-path"><code>--module-path</code> or
+<code>-p</code> <em>module-path</em>
+[<code>,</code><em>module-path</em>...]</a></dt>
+<dd>
+<p>A File.pathSeparator separated list of paths</p>
+<p>Each path is either a directory of modules or the path to a modular
+jar, and is absolute or relative to the current directory.</p>
+<p>This option can be used multiple times.</p>
+</dd>
+<dt><a id="option-jlink-options"><code>--jlink-options</code>
+<em>options</em></a></dt>
+<dd>
+<p>A space separated list of options to pass to jlink</p>
+<p>If not specified, defaults to "--strip-native-commands --strip-debug
+--no-man-pages --no-header-files"</p>
+<p>This option can be used multiple times.</p>
+</dd>
+<dt><a id="option-runtime-image"><code>--runtime-image</code>
+<em>directory</em></a></dt>
+<dd>
+<p>Path of the predefined runtime image that will be copied into the
+application image</p>
+<p>(absolute path or relative to the current directory)</p>
+<p>If --runtime-image is not specified, jpackage will run jlink to
+create the runtime image using options specified by --jlink-options.</p>
+</dd>
+</dl>
+<h3 id="options-for-creating-the-application-image">Options for creating
+the application image:</h3>
+<dl>
+<dt><a id="option-input"><code>--input</code> or <code>-i</code>
+<em>directory</em></a></dt>
+<dd>
+<p>Path of the input directory that contains the files to be
+packaged</p>
+<p>(absolute path or relative to the current directory)</p>
+<p>All files in the input directory will be packaged into the
+application image.</p>
+</dd>
+<dt>`--app-content
+<em>additional-content</em>[,<em>additional-content</em>...]</dt>
+<dd>
+<p>A comma separated list of paths to files and/or directories to add to
+the application payload.</p>
+<p>This option can be used more than once.</p>
+</dd>
+</dl>
+<h3 id="options-for-creating-the-application-launchers">Options for
+creating the application launcher(s):</h3>
+<dl>
+<dt><a id="option-add-launcher"><code>--add-launcher</code>
+<em>name</em>=<em>path</em></a></dt>
+<dd>
+<p>Name of launcher, and a path to a Properties file that contains a
+list of key, value pairs</p>
+<p>(absolute path or relative to the current directory)</p>
+<p>The keys "module", "main-jar", "main-class", "description",
+"arguments", "java-options", "app-version", "icon",
+"launcher-as-service", "win-console", "win-shortcut", "win-menu",
+"linux-app-category", and "linux-shortcut" can be used.</p>
+<p>These options are added to, or used to overwrite, the original
+command line options to build an additional alternative launcher. The
+main application launcher will be built from the command line options.
+Additional alternative launchers can be built using this option, and
+this option can be used multiple times to build multiple additional
+launchers.</p>
+</dd>
+<dt><a id="option-arguments"><code>--arguments</code>
+<em>arguments</em></a></dt>
+<dd>
+<p>Command line arguments to pass to the main class if no command line
+arguments are given to the launcher</p>
+<p>This option can be used multiple times.</p>
+</dd>
+<dt><a id="option-java-options"><code>--java-options</code>
+<em>options</em></a></dt>
+<dd>
+<p>Options to pass to the Java runtime</p>
+<p>This option can be used multiple times.</p>
+</dd>
+<dt><a id="option-main-class"><code>--main-class</code>
+<em>class-name</em></a></dt>
+<dd>
+<p>Qualified name of the application main class to execute</p>
+<p>This option can only be used if --main-jar is specified.</p>
+</dd>
+<dt><a id="option-main-jar"><code>--main-jar</code>
+<em>main-jar</em></a></dt>
+<dd>
+<p>The main JAR of the application; containing the main class (specified
+as a path relative to the input path)</p>
+<p>Either --module or --main-jar option can be specified but not
+both.</p>
+</dd>
+<dt><a id="option-module"><code>--module</code> or <code>-m</code>
+<em>module-name</em>[/<em>main-class</em>]</a></dt>
+<dd>
+<p>The main module (and optionally main class) of the application</p>
+<p>This module must be located on the module path.</p>
+<p>When this option is specified, the main module will be linked in the
+Java runtime image. Either --module or --main-jar option can be
+specified but not both.</p>
+</dd>
+</dl>
+<h3
+id="platform-dependent-option-for-creating-the-application-launcher">Platform
+dependent option for creating the application launcher:</h3>
+<h4
+id="windows-platform-options-available-only-when-running-on-windows">Windows
+platform options (available only when running on Windows):</h4>
+<dl>
+<dt><a id="option-win-console"><code>--win-console</code></a></dt>
+<dd>
+<p>Creates a console launcher for the application, should be specified
+for application which requires console interactions</p>
+</dd>
+</dl>
+<h4
+id="macos-platform-options-available-only-when-running-on-macos">macOS
+platform options (available only when running on macOS):</h4>
+<dl>
+<dt><a id="option-mac-package-identifier"><code>--mac-package-identifier</code>
+<em>identifier</em></a></dt>
+<dd>
+<p>An identifier that uniquely identifies the application for macOS</p>
+<p>Defaults to the main class name.</p>
+<p>May only use alphanumeric (A-Z,a-z,0-9), hyphen (-), and period (.)
+characters.</p>
+</dd>
+<dt><a id="option-mac-package-name"><code>--mac-package-name</code>
+<em>name</em></a></dt>
+<dd>
+<p>Name of the application as it appears in the Menu Bar</p>
+<p>This can be different from the application name.</p>
+<p>This name must be less than 16 characters long and be suitable for
+displaying in the menu bar and the application Info window. Defaults to
+the application name.</p>
+</dd>
+<dt><a id="option-mac-package-signing-prefix"><code>--mac-package-signing-prefix</code>
+<em>prefix</em></a></dt>
+<dd>
+<p>When signing the application package, this value is prefixed to all
+components that need to be signed that don't have an existing package
+identifier.</p>
+</dd>
+<dt><a id="option-mac-sign"><code>--mac-sign</code></a></dt>
+<dd>
+<p>Request that the package or the predefined application image be
+signed.</p>
+</dd>
+<dt><a id="option-mac-signing-keychain"><code>--mac-signing-keychain</code>
+<em>keychain-name</em></a></dt>
+<dd>
+<p>Name of the keychain to search for the signing identity</p>
+<p>If not specified, the standard keychains are used.</p>
+</dd>
+<dt><a id="option-mac-signing-key-user-name"><code>--mac-signing-key-user-name</code>
+<em>name</em></a></dt>
+<dd>
+<p>Team or user name portion in Apple signing identities</p>
+</dd>
+<dt><a id="option-mac-app-store"><code>--mac-app-store</code></a></dt>
+<dd>
+<p>Indicates that the jpackage output is intended for the Mac App
+Store.</p>
+</dd>
+<dt><a id="option-mac-entitlements"><code>--mac-entitlements</code>
+<em>path</em></a></dt>
+<dd>
+<p>Path to file containing entitlements to use when signing executables
+and libraries in the bundle</p>
+</dd>
+<dt><a id="option-mac-app-category"><code>--mac-app-category</code>
+<em>category</em></a></dt>
+<dd>
+<p>String used to construct LSApplicationCategoryType in application
+plist</p>
+<p>The default value is "utilities".</p>
+</dd>
+</dl>
+<h3 id="options-for-creating-the-application-package">Options for
+creating the application package:</h3>
+<dl>
+<dt><a id="option-about-url"><code>--about-url</code>
+<em>url</em></a></dt>
+<dd>
+<p>URL of the application's home page</p>
+</dd>
+<dt><a id="option-app-image"><code>--app-image</code>
+<em>directory</em></a></dt>
+<dd>
+<p>Location of the predefined application image that is used to build an
+installable package (on all platforms) or to be signed (on macOS)</p>
+<p>(absolute path or relative to the current directory)</p>
+</dd>
+<dt><a id="option-file-associations"><code>--file-associations</code>
+<em>path</em></a></dt>
+<dd>
+<p>Path to a Properties file that contains list of key, value pairs</p>
+<p>(absolute path or relative to the current directory)</p>
+<p>The keys "extension", "mime-type", "icon", and "description" can be
+used to describe the association.</p>
+<p>This option can be used multiple times.</p>
+</dd>
+<dt><a id="option-install-dir"><code>--install-dir</code>
+<em>path</em></a></dt>
+<dd>
+<p>Absolute path of the installation directory of the application (on
+macOS or linux), or relative sub-path of the installation directory such
+as "Program Files" or "AppData" (on Windows)</p>
+</dd>
+<dt><a id="option-license-file"><code>--license-file</code>
+<em>path</em></a></dt>
+<dd>
+<p>Path to the license file</p>
+<p>(absolute path or relative to the current directory)</p>
+</dd>
+<dt><a id="option-resource-dir"><code>--resource-dir</code>
+<em>path</em></a></dt>
+<dd>
+<p>Path to override jpackage resources</p>
+<p>(absolute path or relative to the current directory)</p>
+<p>Icons, template files, and other resources of jpackage can be
+over-ridden by adding replacement resources to this directory.</p>
+</dd>
+<dt><a id="option-runtime-image"><code>--runtime-image</code>
+<em>path</em></a></dt>
+<dd>
+<p>Path of the predefined runtime image to install</p>
+<p>(absolute path or relative to the current directory)</p>
+<p>Option is required when creating a runtime installer.</p>
+</dd>
+<dt><a id="option-launcher-as-service"><code>--launcher-as-service</code></a></dt>
+<dd>
+<p>Request to create an installer that will register the main
+application launcher as a background service-type application.</p>
+</dd>
+</dl>
+<h3
+id="platform-dependent-options-for-creating-the-application-package">Platform
+dependent options for creating the application package:</h3>
+<h4
+id="windows-platform-options-available-only-when-running-on-windows-1">Windows
+platform options (available only when running on Windows):</h4>
+<dl>
+<dt><a id="option-win-dir-chooser"><code>--win-dir-chooser</code></a></dt>
+<dd>
+<p>Adds a dialog to enable the user to choose a directory in which the
+product is installed.</p>
+</dd>
+<dt><a id="option-win-help-url"><code>--win-help-url</code>
+<em>url</em></a></dt>
+<dd>
+<p>URL where user can obtain further information or technical
+support</p>
+</dd>
+<dt><a id="option-win-menu"><code>--win-menu</code></a></dt>
+<dd>
+<p>Request to add a Start Menu shortcut for this application</p>
+</dd>
+<dt><a id="option-win-menu-group"><code>--win-menu-group</code>
+<em>menu-group-name</em></a></dt>
+<dd>
+<p>Start Menu group this application is placed in</p>
+</dd>
+<dt><a id="option-win-per-user-install"><code>--win-per-user-install</code></a></dt>
+<dd>
+<p>Request to perform an install on a per-user basis</p>
+</dd>
+<dt><a id="option-win-shortcut"><code>--win-shortcut</code></a></dt>
+<dd>
+<p>Request to create a desktop shortcut for this application</p>
+</dd>
+<dt><a id="option-win-shortcut-prompt"><code>--win-shortcut-prompt</code></a></dt>
+<dd>
+<p>Adds a dialog to enable the user to choose if shortcuts will be
+created by installer</p>
+</dd>
+<dt><a id="option-win-update-url"><code>--win-update-url</code>
+<em>url</em></a></dt>
+<dd>
+<p>URL of available application update information</p>
+</dd>
+<dt><a id="option-win-upgrade-uuid"><code>--win-upgrade-uuid</code>
+<em>id</em></a></dt>
+<dd>
+<p>UUID associated with upgrades for this package</p>
+</dd>
+</dl>
+<h4
+id="linux-platform-options-available-only-when-running-on-linux">Linux
+platform options (available only when running on Linux):</h4>
+<dl>
+<dt><a id="option-linux-package-name"><code>--linux-package-name</code>
+<em>name</em></a></dt>
+<dd>
+<p>Name for Linux package</p>
+<p>Defaults to the application name.</p>
+</dd>
+<dt><a id="option-linux-deb-maintainer"><code>--linux-deb-maintainer</code>
+<em>email-address</em></a></dt>
+<dd>
+<p>Maintainer for .deb bundle</p>
+</dd>
+<dt><a id="option-linux-menu-group"><code>--linux-menu-group</code>
+<em>menu-group-name</em></a></dt>
+<dd>
+<p>Menu group this application is placed in</p>
+</dd>
+<dt><a id="option-linux-package-deps"><code>--linux-package-deps</code></a></dt>
+<dd>
+<p>Required packages or capabilities for the application</p>
+</dd>
+<dt><a id="option-linux-rpm-license-type"><code>--linux-rpm-license-type</code>
+<em>type</em></a></dt>
+<dd>
+<p>Type of the license ("License: <em>value</em>" of the RPM .spec)</p>
+</dd>
+<dt><a id="option-linux-app-release"><code>--linux-app-release</code>
+<em>release</em></a></dt>
+<dd>
+<p>Release value of the RPM &lt;name&gt;.spec file or Debian revision
+value of the DEB control file</p>
+</dd>
+<dt><a id="option-linux-app-category"><code>--linux-app-category</code>
+<em>category-value</em></a></dt>
+<dd>
+<p>Group value of the RPM /<name/>.spec file or Section value of DEB
+control file</p>
+</dd>
+<dt><a id="option-linux-shortcut"><code>--linux-shortcut</code></a></dt>
+<dd>
+<p>Creates a shortcut for the application.</p>
+</dd>
+</dl>
+<h4
+id="macos-platform-options-available-only-when-running-on-macos-1">macOS
+platform options (available only when running on macOS):</h4>
+<dl>
+<dt>'--mac-dmg-content
+<em>additional-content</em>[,<em>additional-content</em>...]</dt>
+<dd>
+<p>Include all the referenced content in the dmg.</p>
+<p>This option can be used more than once.</p>
+</dd>
+</dl>
+<h2 id="jpackage-examples">jpackage Examples</h2>
+<pre><code>Generate an application package suitable for the host system:</code></pre>
+<pre><code>For a modular application:
+    jpackage -n name -p modulePath -m moduleName/className
+For a non-modular application:
+    jpackage -i inputDir -n name \
+        --main-class className --main-jar myJar.jar
+From a pre-built application image:
+    jpackage -n name --app-image appImageDir</code></pre>
+<pre><code>Generate an application image:</code></pre>
+<pre><code>For a modular application:
+    jpackage --type app-image -n name -p modulePath \
+        -m moduleName/className
+For a non-modular application:
+    jpackage --type app-image -i inputDir -n name \
+        --main-class className --main-jar myJar.jar
+To provide your own options to jlink, run jlink separately:
+    jlink --output appRuntimeImage -p modulePath \
+        --add-modules moduleName \
+        --no-header-files [&lt;additional jlink options&gt;...]
+    jpackage --type app-image -n name \
+        -m moduleName/className --runtime-image appRuntimeImage</code></pre>
+<pre><code>Generate a Java runtime package:</code></pre>
+<pre><code>jpackage -n name --runtime-image &lt;runtime-image&gt;</code></pre>
+<pre><code>Sign the predefined application image (on macOS):</code></pre>
+<pre><code>jpackage --type app-image --app-image &lt;app-image&gt; \
+    --mac-sign [&lt;additional signing options&gt;...]
+
+Note: the only additional options that are permitted in this mode are:
+      the set of additional mac signing options and --verbose</code></pre>
+<h2 id="jpackage-resource-directory">jpackage resource directory</h2>
+<p>Icons, template files, and other resources of jpackage can be
+over-ridden by adding replacement resources to this directory. jpackage
+will lookup files by specific names in the resource directory.</p>
+<h3
+id="resource-directory-files-considered-only-when-running-on-linux">Resource
+directory files considered only when running on Linux:</h3>
+<dl>
+<dt><code>&lt;launcher-name&gt;.png</code></dt>
+<dd>
+<p>Application launcher icon</p>
+<p>Default resource is <em>JavaApp.png</em></p>
+</dd>
+<dt><code>&lt;launcher-name&gt;.desktop</code></dt>
+<dd>
+<p>A desktop file to be used with <code>xdg-desktop-menu</code>
+command</p>
+<p>Considered with application launchers registered for file
+associations and/or have an icon</p>
+<p>Default resource is <em>template.desktop</em></p>
+</dd>
+</dl>
+<h4
+id="resource-directory-files-considered-only-when-building-linux-debrpm-installer">Resource
+directory files considered only when building Linux DEB/RPM
+installer:</h4>
+<dl>
+<dt><code>&lt;package-name&gt;-&lt;launcher-name&gt;.service</code></dt>
+<dd>
+<p>systemd unit file for application launcher registered as a background
+service-type application</p>
+<p>Default resource is <em>unit-template.service</em></p>
+</dd>
+</dl>
+<h4
+id="resource-directory-files-considered-only-when-building-linux-rpm-installer">Resource
+directory files considered only when building Linux RPM installer:</h4>
+<dl>
+<dt><code>&lt;package-name&gt;.spec</code></dt>
+<dd>
+<p>RPM spec file</p>
+<p>Default resource is <em>template.spec</em></p>
+</dd>
+</dl>
+<h4
+id="resource-directory-files-considered-only-when-building-linux-deb-installer">Resource
+directory files considered only when building Linux DEB installer:</h4>
+<dl>
+<dt><code>control</code></dt>
+<dd>
+<p>Control file</p>
+<p>Default resource is <em>template.control</em></p>
+</dd>
+<dt><code>copyright</code></dt>
+<dd>
+<p>Copyright file</p>
+<p>Default resource is <em>template.copyright</em></p>
+</dd>
+<dt><code>preinstall</code></dt>
+<dd>
+<p>Pre-install shell script</p>
+<p>Default resource is <em>template.preinstall</em></p>
+</dd>
+<dt><code>prerm</code></dt>
+<dd>
+<p>Pre-remove shell script</p>
+<p>Default resource is <em>template.prerm</em></p>
+</dd>
+<dt><code>postinstall</code></dt>
+<dd>
+<p>Post-install shell script</p>
+<p>Default resource is <em>template.postinstall</em></p>
+</dd>
+<dt><code>postrm</code></dt>
+<dd>
+<p>Post-remove shell script</p>
+<p>Default resource is <em>template.postrm</em></p>
+</dd>
+</dl>
+<h3
+id="resource-directory-files-considered-only-when-running-on-windows">Resource
+directory files considered only when running on Windows:</h3>
+<dl>
+<dt><code>&lt;launcher-name&gt;.ico</code></dt>
+<dd>
+<p>Application launcher icon</p>
+<p>Default resource is <em>JavaApp.ico</em></p>
+</dd>
+<dt><code>&lt;launcher-name&gt;.properties</code></dt>
+<dd>
+<p>Properties file for application launcher executable</p>
+<p>Default resource is <em>WinLauncher.template</em></p>
+</dd>
+</dl>
+<h4
+id="resource-directory-files-considered-only-when-building-windows-msiexe-installer">Resource
+directory files considered only when building Windows MSI/EXE
+installer:</h4>
+<dl>
+<dt><code>&lt;application-name&gt;-post-image.wsf</code></dt>
+<dd>
+<p>A Windows Script File (WSF) to run after building application
+image</p>
+</dd>
+<dt><code>main.wxs</code></dt>
+<dd>
+<p>Main WiX project file</p>
+<p>Default resource is <em>main.wxs</em></p>
+</dd>
+<dt><code>overrides.wxi</code></dt>
+<dd>
+<p>Overrides WiX project file</p>
+<p>Default resource is <em>overrides.wxi</em></p>
+</dd>
+<dt><code>service-installer.exe</code></dt>
+<dd>
+<p>Service installer executable</p>
+<p>Considered if some application launchers are registered as background
+service-type applications</p>
+</dd>
+<dt><code>&lt;launcher-name&gt;-service-install.wxi</code></dt>
+<dd>
+<p>Service installer WiX project file</p>
+<p>Considered if some application launchers are registered as background
+service-type applications</p>
+<p>Default resource is <em>service-install.wxi</em></p>
+</dd>
+<dt><code>&lt;launcher-name&gt;-service-config.wxi</code></dt>
+<dd>
+<p>Service installer WiX project file</p>
+<p>Considered if some application launchers are registered as background
+service-type applications</p>
+<p>Default resource is <em>service-config.wxi</em></p>
+</dd>
+<dt><code>InstallDirNotEmptyDlg.wxs</code></dt>
+<dd>
+<p>WiX project file for installer UI dialog checking installation
+directory doesn't exist or is empty</p>
+<p>Default resource is <em>InstallDirNotEmptyDlg.wxs</em></p>
+</dd>
+<dt><code>ShortcutPromptDlg.wxs</code></dt>
+<dd>
+<p>WiX project file for installer UI dialog configuring shortcuts</p>
+<p>Default resource is <em>ShortcutPromptDlg.wxs</em></p>
+</dd>
+<dt><code>bundle.wxf</code></dt>
+<dd>
+<p>WiX project file with the hierarchy of components of application
+image</p>
+</dd>
+<dt><code>ui.wxf</code></dt>
+<dd>
+<p>WiX project file for installer UI</p>
+</dd>
+</dl>
+<h4
+id="resource-directory-files-considered-only-when-building-windows-exe-installer">Resource
+directory files considered only when building Windows EXE
+installer:</h4>
+<dl>
+<dt><code>WinInstaller.properties</code></dt>
+<dd>
+<p>Properties file for the installer executable</p>
+<p>Default resource is <em>WinInstaller.template</em></p>
+</dd>
+<dt><code>&lt;package-name&gt;-post-msi.wsf</code></dt>
+<dd>
+<p>A Windows Script File (WSF) to run after building embedded MSI
+installer for EXE installer</p>
+</dd>
+</dl>
+<h3
+id="resource-directory-files-considered-only-when-running-on-macos">Resource
+directory files considered only when running on macOS:</h3>
+<dl>
+<dt><code>&lt;launcher-name&gt;.icns</code></dt>
+<dd>
+<p>Application launcher icon</p>
+<p>Default resource is <em>JavaApp.icns</em></p>
+</dd>
+<dt><code>Info.plist</code></dt>
+<dd>
+<p>Application property list file</p>
+<p>Default resource is <em>Info-lite.plist.template</em></p>
+</dd>
+<dt><code>Runtime-Info.plist</code></dt>
+<dd>
+<p>Java Runtime property list file</p>
+<p>Default resource is <em>Runtime-Info.plist.template</em></p>
+</dd>
+<dt><code>&lt;application-name&gt;.entitlements</code></dt>
+<dd>
+<p>Signing entitlements property list file</p>
+<p>Default resource is <em>sandbox.plist</em></p>
+</dd>
+</dl>
+<h4
+id="resource-directory-files-considered-only-when-building-macos-pkgdmg-installer">Resource
+directory files considered only when building macOS PKG/DMG
+installer:</h4>
+<dl>
+<dt><code>&lt;package-name&gt;-post-image.sh</code></dt>
+<dd>
+<p>Shell script to run after building application image</p>
+</dd>
+</dl>
+<h4
+id="resource-directory-files-considered-only-when-building-macos-pkg-installer">Resource
+directory files considered only when building macOS PKG installer:</h4>
+<dl>
+<dt><code>uninstaller</code></dt>
+<dd>
+<p>Uninstaller shell script</p>
+<p>Considered if some application launchers are registered as background
+service-type applications</p>
+<p>Default resource is <em>uninstall.command.template</em></p>
+</dd>
+<dt><code>preinstall</code></dt>
+<dd>
+<p>Pre-install shell script</p>
+<p>Default resource is <em>preinstall.template</em></p>
+</dd>
+<dt><code>postinstall</code></dt>
+<dd>
+<p>Post-install shell script</p>
+<p>Default resource is <em>postinstall.template</em></p>
+</dd>
+<dt><code>services-preinstall</code></dt>
+<dd>
+<p>Pre-install shell script for services package</p>
+<p>Considered if some application launchers are registered as background
+service-type applications</p>
+<p>Default resource is <em>services-preinstall.template</em></p>
+</dd>
+<dt><code>services-postinstall</code></dt>
+<dd>
+<p>Post-install shell script for services package</p>
+<p>Considered if some application launchers are registered as background
+service-type applications</p>
+<p>Default resource is <em>services-postinstall.template</em></p>
+</dd>
+<dt><code>&lt;package-name&gt;-background.png</code></dt>
+<dd>
+<p>Background image</p>
+<p>Default resource is <em>background_pkg.png</em></p>
+</dd>
+<dt><code>&lt;package-name&gt;-background-darkAqua.png</code></dt>
+<dd>
+<p>Dark background image</p>
+<p>Default resource is <em>background_pkg.png</em></p>
+</dd>
+<dt><code>product-def.plist</code></dt>
+<dd>
+<p>Package property list file</p>
+<p>Default resource is <em>product-def.plist</em></p>
+</dd>
+<dt><code>&lt;package-name&gt;-&lt;launcher-name&gt;.plist</code></dt>
+<dd>
+<p>launchd property list file for application launcher registered as a
+background service-type application</p>
+<p>Default resource is <em>launchd.plist.template</em></p>
+</dd>
+</dl>
+<h4
+id="resource-directory-files-considered-only-when-building-macos-dmg-installer">Resource
+directory files considered only when building macOS DMG installer:</h4>
+<dl>
+<dt><code>&lt;package-name&gt;-dmg-setup.scpt</code></dt>
+<dd>
+<p>Setup AppleScript script</p>
+<p>Default resource is <em>DMGsetup.scpt</em></p>
+</dd>
+<dt><code>&lt;package-name&gt;-license.plist</code></dt>
+<dd>
+<p>License property list file</p>
+<p>Default resource is <em>lic_template.plist</em></p>
+</dd>
+<dt><code>&lt;package-name&gt;-background.tiff</code></dt>
+<dd>
+<p>Background image</p>
+<p>Default resource is <em>background_dmg.tiff</em></p>
+</dd>
+<dt><code>&lt;package-name&gt;-volume.icns</code></dt>
+<dd>
+<p>Volume icon</p>
+<p>Default resource is <em>JavaApp.icns</em></p>
+</dd>
+</dl>
+</main><footer class="legal-footer"><hr/><a href="../../legal/copyright.html">Copyright</a> &copy; 1993, 2023, Oracle and/or its affiliates, 500 Oracle Parkway, Redwood Shores, CA 94065 USA.<br>All rights reserved. Use is subject to <a href="https://www.oracle.com/java/javase/terms/license/java20speclicense.html">license terms</a> and the <a href="https://www.oracle.com/technetwork/java/redist-137594.html">documentation redistribution policy</a>. <!-- Version 20.0.2+9-78 --></footer>
+</body>
+</html>

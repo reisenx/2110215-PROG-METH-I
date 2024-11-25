@@ -1,0 +1,14 @@
+[BaseProduct toString]
+	public String toString() {
+		return this.getProductName() + " (Price: " + this.getPrice() + ", No Promo)";
+	}
+	
+[FreeDiscountProduct toString]
+	public String toString() {
+		return this.getProductName() + " (Price: " + this.getPrice() + ", Buy " + this.getPromoQuantity() + " Get " + this.getFreeQuantity() + " Free)";
+	}
+
+[PercentDiscountProduct toString]
+	public String toString() {
+		return this.getProductName() + " (Price: " + this.getPrice() +", "+ this.getPercent() + "% Off)";
+	}

@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc,fixuphtml" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>The jwebserver Command</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" href="../../resources/jdk-default.css" />
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+
+<header id="title-block-header">
+<div class="navbar"><div><strong>Java SE 20 & JDK 20</strong></div><nav><ul><li><a href="../../api/index.html">API</a>
+<li><a href="../index.html">OTHER SPECIFICATIONS</a>
+<li><a href="../man/index.html">TOOL GUIDES</a></ul></nav></div>
+
+<h1 class="title">The jwebserver Command</h1>
+</header>
+<nav id="TOC" role="doc-toc" title="Table Of Contents">
+<ul>
+<li><a href="#name" id="toc-name">Name</a></li>
+<li><a href="#synopsis" id="toc-synopsis">Synopsis</a></li>
+<li><a href="#description" id="toc-description">Description</a></li>
+<li><a href="#usage" id="toc-usage">Usage</a></li>
+<li><a href="#options" id="toc-options">Options</a></li>
+<li><a href="#starting-the-server" id="toc-starting-the-server">Starting
+the Server</a></li>
+<li><a href="#configuration"
+id="toc-configuration">Configuration</a></li>
+<li><a href="#stopping-the-server" id="toc-stopping-the-server">Stopping
+the Server</a></li>
+<li><a href="#help-option" id="toc-help-option">Help Option</a></li>
+</ul>
+</nav>
+<main><h2 id="name">Name</h2>
+<p>jwebserver - launch the Java Simple Web Server</p>
+<h2 id="synopsis">Synopsis</h2>
+<p><code>jwebserver</code> [<em>options</em>]</p>
+<dl>
+<dt><em>options</em></dt>
+<dd>
+Command-line options. For a detailed description of the options, see <a
+href="#options">Options</a>.
+</dd>
+</dl>
+<h2 id="description">Description</h2>
+<p>The <code>jwebserver</code> tool provides a minimal HTTP server,
+designed to be used for prototyping, testing, and debugging. It serves a
+single directory hierarchy, and only serves static files. Only HTTP/1.1
+is supported; HTTP/2 and HTTPS are not supported.</p>
+<p>Only idempotent HEAD and GET requests are served. Any other requests
+receive a <code>501 - Not Implemented</code> or a
+<code>405 - Not Allowed</code> response. GET requests are mapped to the
+directory being served, as follows:</p>
+<ul>
+<li>If the requested resource is a file, its content is served.</li>
+<li>If the requested resource is a directory that contains an index
+file, the content of the index file is served.</li>
+<li>Otherwise, the names of all files and subdirectories of the
+directory are listed. Symbolic links and hidden files are not listed or
+served.</li>
+</ul>
+<p>MIME types are configured automatically, using the built-in table.
+For example, <code>.html</code> files are served as
+<code>text/html</code> and <code>.java</code> files are served as
+<code>text/plain</code>.</p>
+<p><code>jwebserver</code> is located in the jdk.httpserver module, and
+can alternatively be started with <code>java -m jdk.httpserver</code>.
+It is based on the web server implementation in the
+<code>com.sun.net.httpserver</code> package. The
+<code>com.sun.net.httpserver.SimpleFileServer</code> class provides a
+programmatic way to retrieve the server and its components for reuse and
+extension.</p>
+<h2 id="usage">Usage</h2>
+<pre><code>jwebserver [-b bind address] [-p port] [-d directory]
+           [-o none|info|verbose] [-h to show options]
+           [-version to show version information]</code></pre>
+<h2 id="options">Options</h2>
+<dl>
+<dt><code>-h</code> or <code>-?</code> or <code>--help</code></dt>
+<dd>
+Prints the help message and exits.
+</dd>
+<dt><code>-b</code> <em>addr</em> or <code>--bind-address</code>
+<em>addr</em></dt>
+<dd>
+Specifies the address to bind to. Default: 127.0.0.1 or ::1 (loopback).
+For all interfaces use <code>-b 0.0.0.0</code> or <code>-b ::</code>.
+</dd>
+<dt><code>-d</code> <em>dir</em> or <code>--directory</code>
+<em>dir</em></dt>
+<dd>
+Specifies the directory to serve. Default: current directory.
+</dd>
+<dt><code>-o</code> <em>level</em> or <code>--output</code>
+<em>level</em></dt>
+<dd>
+Specifies the output format. <code>none</code> | <code>info</code> |
+<code>verbose</code>. Default: <code>info</code>.
+</dd>
+<dt><code>-p</code> <em>port</em> or <code>--port</code>
+<em>port</em></dt>
+<dd>
+Specifies the port to listen on. Default: 8000.
+</dd>
+<dt><code>-version</code> or <code>--version</code></dt>
+<dd>
+Prints the version information and exits.
+</dd>
+</dl>
+<p>To stop the server, press <code>Ctrl + C</code>.</p>
+<h2 id="starting-the-server">Starting the Server</h2>
+<p>The following command starts the Simple Web Server:</p>
+<pre><code>$ jwebserver</code></pre>
+<p>If startup is successful, the server prints a message to
+<code>System.out</code> listing the local address and the absolute path
+of the directory being served. For example:</p>
+<pre><code>$ jwebserver
+Binding to loopback by default. For all interfaces use &quot;-b 0.0.0.0&quot; or &quot;-b ::&quot;.
+Serving /cwd and subdirectories on 127.0.0.1 port 8000
+URL http://127.0.0.1:8000/</code></pre>
+<h2 id="configuration">Configuration</h2>
+<p>By default, the server runs in the foreground and binds to the
+loopback address and port 8000. This can be changed with the
+<code>-b</code> and <code>-p</code> options. For example, to bind the
+Simple Web Server to all interfaces, use:</p>
+<pre><code>$ jwebserver -b 0.0.0.0
+Serving /cwd and subdirectories on 0.0.0.0 (all interfaces) port 8000
+URL http://123.456.7.891:8000/</code></pre>
+<p>Note that this makes the web server accessible to all hosts on the
+network. <em>Do not do this unless you are sure the server cannot leak
+any sensitive information.</em></p>
+<p>As another example, use the following command to run on port
+9000:</p>
+<pre><code>$ jwebserver -p 9000</code></pre>
+<p>By default, the files of the current directory are served. A
+different directory can be specified with the <code>-d</code>
+option.</p>
+<p>By default, every request is logged on the console. The output looks
+like this:</p>
+<pre><code>127.0.0.1 - - [10/Feb/2021:14:34:11 +0000] &quot;GET /some/subdirectory/ HTTP/1.1&quot; 200 -</code></pre>
+<p>Logging output can be changed with the <code>-o</code> option. The
+default setting is <code>info</code>. The <code>verbose</code> setting
+additionally includes the request and response headers as well as the
+absolute path of the requested resource.</p>
+<h2 id="stopping-the-server">Stopping the Server</h2>
+<p>Once started successfully, the server runs until it is stopped. On
+Unix platforms, the server can be stopped by sending it a
+<code>SIGINT</code> signal (<code>Ctrl+C</code> in a terminal
+window).</p>
+<h2 id="help-option">Help Option</h2>
+<p>The <code>-h</code> option displays a help message describing the
+usage and the options of the <code>jwebserver</code>.</p>
+</main><footer class="legal-footer"><hr/><a href="../../legal/copyright.html">Copyright</a> &copy; 1993, 2023, Oracle and/or its affiliates, 500 Oracle Parkway, Redwood Shores, CA 94065 USA.<br>All rights reserved. Use is subject to <a href="https://www.oracle.com/java/javase/terms/license/java20speclicense.html">license terms</a> and the <a href="https://www.oracle.com/technetwork/java/redist-137594.html">documentation redistribution policy</a>. <!-- Version 20.0.2+9-78 --></footer>
+</body>
+</html>
