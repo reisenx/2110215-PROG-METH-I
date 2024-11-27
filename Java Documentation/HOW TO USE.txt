@@ -1,4 +1,0 @@
-วิธีการใช้งาน Documentation
-- เปิดไฟล์ index.html
-- เป็นเว็บ Documentation ที่สามารถใช้งาน Offline ได้
-- ของ Java FX ใช้ไฟล์ HTML อื่นได้ แต่จะอ่านยากหน่อย

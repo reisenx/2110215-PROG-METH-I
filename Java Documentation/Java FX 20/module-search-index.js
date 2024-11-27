@@ -1,1 +1,0 @@
-moduleSearchIndex = [{"l":"javafx.base"},{"l":"javafx.controls"},{"l":"javafx.fxml"},{"l":"javafx.graphics"},{"l":"javafx.media"},{"l":"javafx.swing"},{"l":"javafx.web"}];updateSearchResults();
